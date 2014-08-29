@@ -52,10 +52,11 @@ EZLog = (function() {
             console.warn.apply(console, _wrap_arguments(arguments));
         };
         return {
+            log       : _log,
             info      : _info,
+            debug     : _debug,
             error     : _error,
-            warn      : _warn,
-            log       : _log
+            warn      : _warn
         }
     };
     return {
