@@ -25,4 +25,4 @@ red.error("and it's really small ", "right?");
 Snapshot
 --------
 ![for Chrome] (https://raw.githubusercontent.com/Feng-Zihao/ezlogjs/master/ezlog_chrome.png)
-![for Firefox](https://raw.githubusercontent.com/Feng-Zihao/ezlogjs/master/ezlog_chrome.png)
+![for Firefox](https://raw.githubusercontent.com/Feng-Zihao/ezlogjs/master/ezlog_firefox.png)
