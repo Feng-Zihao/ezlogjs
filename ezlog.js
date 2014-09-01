@@ -1,14 +1,15 @@
 
 
-EZLog = (function() {
+var EZLog = (function() {
 
-    var _getLogger = function(_name, options) {
-        var name = _name;
+    var _getLogger = function(options) {
+        var name = undefined;
         var color = undefined;
         var background = undefined;
         if (options !== undefined) {
             color = options.color;
             background = options.background;
+            name = options.name;
         }
 
         var _wrap_arguments = function(_args) {
@@ -20,16 +21,25 @@ EZLog = (function() {
             if (color !== undefined) {
                 style.push("color: " + color);
             }
-            if (style.length === 0) {
-                args.push('[' + name + '] ');
-            } else {
-                args.push('%c[' + name + '] ');
-                args.push(style.join("; "));
+            if (name !== undefined) {
+                if (style.length === 0) {
+                    args.push('[' + name + '] ');
+                } else {
+                    args.push('%c[' + name + '] ');
+                    args.push(style.join("; "));
+                }
             }
-            for (var i = 0; i < arguments.length; i++) {
-                args.push(arguments[i]);
+            for (var i = 0; i < _args.length; i++) {
+                args.push(_args[i]);
             };
             return args;
+        };
+
+        var _name = function() {
+            if (arguments.length === 0) {
+                return name;
+            }
+            name = arguments[0];
         };
 
         var _log = function() {
@@ -51,17 +61,18 @@ EZLog = (function() {
         var _warn = function() {
             console.warn.apply(console, _wrap_arguments(arguments));
         };
+
         return {
             log       : _log,
             info      : _info,
             debug     : _debug,
             error     : _error,
-            warn      : _warn
+            warn      : _warn,
+            name      : _name
         }
     };
     return {
         getLogger : _getLogger,
     };
 })();
-
 
